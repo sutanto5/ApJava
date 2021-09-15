@@ -20,7 +20,7 @@ public class PizzaTester {
         System.out.println(chez);
 
         if(pineapple.equals(chez)){
-            System.out.println("\nboth pizza are the same");
+            System.out.println("\nboth pizza are the same stupid change");
         }
         else {
             System.out.println("\nthey are not the same");
