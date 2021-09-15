@@ -16,5 +16,6 @@ public class Day1Example {
         double result2 = (x/y) + z;
         System.out.println(result1);
         System.out.println(result2);
+        System.out.println("whats up from github")
     }
 }
