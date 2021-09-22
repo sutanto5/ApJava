@@ -30,8 +30,33 @@ public class Pizza {
     //equals method: returns true if the 2 pizzas are equal false otherwise
     //we're going to cheat and say 2 pizzas are equal if they're from the sameStore
     public boolean equals(Pizza other){
-        boolean sameStore = this.store.equals(other.store);
-        return sameStore;
+
+         /* Long version
+        if(this.inches==other.inches){
+            return true;
+        }else{
+            return false;
+        }*/
+
+        return (this.inches == other.inches);
+    }
+
+    //compareTo method: returns negative if this comes before other,
+    //                  returns positive if this comes after other,
+    //                  returns zero if this  and other are the same
+    //sorts by size
+    public int compareTo(Pizza other){
+       /* Long version
+
+       if(this.inches < other.inches){
+                return  (-(int)(Math.random() *100) +1);
+            }else if(this.inches == other.inches){
+                return 0;
+            }else{
+                return ((int)(Math.random() *100) +1);
+            }*/
+
+        return (this.inches - other.inches);
     }
 
     //outputs pizza's info in string

@@ -44,6 +44,15 @@ public class CompoundBooleanExamples {
                 System.out.println("no exerscise");
             }
         }
+
+
+        //what will print?
+        //&& come first in order of precedence
+        if(true || false && false || true){
+            System.out.println("true");
+        } else{
+            System.out.println("false");
+        }
     }
 
 }
