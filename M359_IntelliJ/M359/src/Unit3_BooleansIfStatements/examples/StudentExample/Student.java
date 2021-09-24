@@ -1,4 +1,4 @@
-package Unit3_BooleansIfStatements.examples;
+package Unit3_BooleansIfStatements.examples.StudentExample;
 
 public class Student {
     String fName;

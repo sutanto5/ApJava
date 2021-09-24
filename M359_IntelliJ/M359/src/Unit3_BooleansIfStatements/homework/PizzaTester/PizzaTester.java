@@ -1,4 +1,4 @@
-package Unit3_BooleansIfStatements.homework;
+package Unit3_BooleansIfStatements.homework.PizzaTester;
 
 public class PizzaTester {
 

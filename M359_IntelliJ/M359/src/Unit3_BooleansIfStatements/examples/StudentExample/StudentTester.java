@@ -1,4 +1,6 @@
-package Unit3_BooleansIfStatements.examples;
+package Unit3_BooleansIfStatements.examples.StudentExample;
+
+import Unit3_BooleansIfStatements.examples.StudentExample.Student;
 
 public class StudentTester {
 
