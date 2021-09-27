@@ -48,6 +48,6 @@ public class ChevroletDriver {
         else
             System.out.println("Not same car");
 
-        System.out.println(chevy.calcPrice());
+        System.out.println("\nPrice of Example: " + chevy.calcPrice());
     }
 }

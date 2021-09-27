@@ -10,7 +10,7 @@ public class Chevy {
     //constants
     final String make = "Chevrolet";
     final double taxRate = 0.122,
-            luxuryIncrease = 0.2, sportsIncrease = .15, fuelDeduction = -.20;
+            luxuryIncrease = 0.2, sportsIncrease = .15, fuelDeduction = .20;
     final int wDPrice = 3500;
 
     //default constructor
@@ -132,6 +132,7 @@ public class Chevy {
         }
         if(sPackageStatus == true){
             finalPrice += (price * sportsIncrease);
+            fuelEfficiency -= (fuelEfficiency * fuelDeduction);
         }
         finalPrice += (finalPrice *taxRate);
         return finalPrice;
