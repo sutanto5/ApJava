@@ -19,8 +19,8 @@ public class Chevy {
         mileage=0;
         price = 16000;
         fuelEfficiency = 35;
-        model = "Trax";
-        color = "white";
+        model = make + " Trax";
+        color = "White";
         lPackageStatus = false;
         wPackageStatus = false;
         sPackageStatus = false;
@@ -60,19 +60,19 @@ public class Chevy {
 
     //Description of car
     public String toString(){
-        String description = color + " " + year + " " + model + " with " + mileage + " miles that costs"
-                + price + ".\n The truck gets " + fuelEfficiency;
+        String description = color + " " + year + " " + model + " with " + mileage + " miles that costs $"
+                + price + ".\nThe truck gets " + fuelEfficiency + " mpg and ";
         if(wPackageStatus == true){
             if(lPackageStatus == true) {
                 if(sPackageStatus == true){
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            "(" + color + ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                             + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t-Sports Package";
                     return description;
                 } else{
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            "(" + color + ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                             + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t";
                     return description;
@@ -80,13 +80,13 @@ public class Chevy {
 
             }else if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                        "(" + color + ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                        " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Sports Package\n\t\t-4WD Package";
                 return description;
             } else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        "("+color+ ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-4WD Package";
                 return description;
@@ -94,26 +94,27 @@ public class Chevy {
         } else if(lPackageStatus == true){
             if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        "("+color+ ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-Sports Package";
                 return description;
             }else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        "("+color+ ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package";
                 return description;
             }
         } else if(sPackageStatus == true){
             description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                    "("+color+ ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                     + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                     "\n\tPACKAGES:\n\t\t-Sports Package";
             return description;
         } else{
-            description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                    "("+color+ ")\n\t\tPRICE:\t\t" + price + "" + "\n\t\tMiles:\t\t" + mileage
+            description += "has no packages.\n\t" + year + " "+ model +
+                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" +
+                    "" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                     + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                     "\n\tPACKAGES:\n\t\t-None";
             return description;
@@ -122,17 +123,18 @@ public class Chevy {
 
     //calcs price of car including packages
     public double calcPrice(){
+        double finalPrice = price;
         if(lPackageStatus == true){
-            price += (price * luxuryIncrease);
+            finalPrice += (price * luxuryIncrease);
         }
         if(wPackageStatus == true){
-            price += wDPrice;
+            finalPrice += wDPrice;
         }
         if(sPackageStatus == true){
-            price += (price * sportsIncrease);
+            finalPrice += (price * sportsIncrease);
         }
-        price += (price *taxRate);
-        return price;
+        finalPrice += (finalPrice *taxRate);
+        return finalPrice;
     }
 
     //Getters and Setters
