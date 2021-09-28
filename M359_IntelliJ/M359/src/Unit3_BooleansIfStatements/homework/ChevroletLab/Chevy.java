@@ -1,17 +1,16 @@
 package Unit3_BooleansIfStatements.homework.ChevroletLab;
-
 public class Chevy {
     //instance variables
-    private int year, mileage, price;
-    private double fuelEfficiency;
+    private int year, mileage;
+    private double fuelEfficiency, price;
     private String model, color;
     private boolean lPackageStatus, wPackageStatus, sPackageStatus;
 
     //constants
-    final String make = "Chevrolet";
-    final double taxRate = 0.122,
+    public static final String make = "Chevrolet";
+    public static final double taxRate = 0.122,
             luxuryIncrease = 0.2, sportsIncrease = .15, fuelDeduction = .20;
-    final int wDPrice = 3500;
+    public static final int wDPrice = 3500;
 
     //default constructor
     public Chevy() {
@@ -27,7 +26,7 @@ public class Chevy {
     }
 
     //constructor that customizes all values
-    public Chevy(int year, int mileage, double fuelEfficiency, int price, String model, String color,
+    public Chevy(int year, int mileage, double fuelEfficiency, double price, String model, String color,
                  boolean lPackageStatus, boolean wPackageStatus, boolean sPackageStatus) {
         this.year = year;
         this.mileage = mileage;
@@ -44,12 +43,12 @@ public class Chevy {
     //returns positive if the first price is greater than the other
     //returns negative if the first price is less than the other
     //returns 0 if both prices are the same
-    public int compareTo(Chevy other){
+    public double compareTo(Chevy other){
         return (this.price - other.price);
     }
 
     //checks if model color and mileage status are equal to each other
-    public boolean equalsTo(Chevy other){
+    public boolean equals(Chevy other){
 
         if (this.model.equals(other.model) && this.color.equals(other.color)){
             return (this.mileage < 200 && other.mileage <200 || this.mileage >=200 && other.mileage >=200);
@@ -61,18 +60,18 @@ public class Chevy {
     //Description of car
     public String toString(){
         String description = color + " " + year + " " + model + " with " + mileage + " miles that costs $"
-                + price + ".\nThe truck gets " + fuelEfficiency + " mpg and ";
+                + calcPrice() + ".\nThe truck gets " + fuelEfficiency + " mpg and ";
         if(wPackageStatus == true){
             if(lPackageStatus == true) {
                 if(sPackageStatus == true){
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                             + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t-Sports Package";
                     return description;
                 } else{
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                             + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t";
                     return description;
@@ -80,13 +79,13 @@ public class Chevy {
 
             }else if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                        " (" + color + ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                        " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Sports Package\n\t\t-4WD Package";
                 return description;
             } else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-4WD Package";
                 return description;
@@ -94,27 +93,27 @@ public class Chevy {
         } else if(lPackageStatus == true){
             if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-Sports Package";
                 return description;
             }else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                         + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package";
                 return description;
             }
         } else if(sPackageStatus == true){
             description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                     + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                     "\n\tPACKAGES:\n\t\t-Sports Package";
             return description;
         } else{
             description += "has no packages.\n\t" + year + " "+ model +
                     " ("+color+ ")\n\t\tPRICE:\t\t\t\t" +
-                    "" + price + "" + "\n\t\tMiles:\t\t\t\t" + mileage
+                    "" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
                     + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
                     "\n\tPACKAGES:\n\t\t-None";
             return description;
@@ -135,6 +134,7 @@ public class Chevy {
             fuelEfficiency -= (fuelEfficiency * fuelDeduction);
         }
         finalPrice += (finalPrice *taxRate);
+        double scale = Math.pow(10,2);
         return finalPrice;
     }
 
@@ -156,11 +156,11 @@ public class Chevy {
         this.mileage = mileage;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

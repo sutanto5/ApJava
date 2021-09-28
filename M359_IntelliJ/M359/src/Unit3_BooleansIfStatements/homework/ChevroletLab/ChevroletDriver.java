@@ -21,8 +21,10 @@ public class ChevroletDriver {
 
         // Printouts
         System.out.println("*** VEHICLE PRINTOUTS ***");
-        System.out.println(traxBase);
-        System.out.println(traxLux);
+        System.out.println(traxBase +"\n");
+        System.out.println(traxLux + "\n");
+        System.out.println(corvetteClassic + "\n");
+        System.out.println(corvetteSport + "\n");
 
         // Display price comparison
         System.out.println("*** COMPARE BY PRICE ***");
