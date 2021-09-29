@@ -1,4 +1,5 @@
 package Unit3_BooleansIfStatements.homework.ChevroletLab;
+import java.text.DecimalFormat;
 public class Chevy {
     //instance variables
     private int year, mileage;
@@ -11,6 +12,7 @@ public class Chevy {
     public static final double taxRate = 0.122,
             luxuryIncrease = 0.2, sportsIncrease = .15, fuelDeduction = .20;
     public static final int wDPrice = 3500;
+
 
     //default constructor
     public Chevy() {
@@ -59,62 +61,63 @@ public class Chevy {
 
     //Description of car
     public String toString(){
+        DecimalFormat twoDecimals = new DecimalFormat("###.00");
         String description = color + " " + year + " " + model + " with " + mileage + " miles that costs $"
-                + calcPrice() + ".\nThe truck gets " + fuelEfficiency + " mpg and ";
+                + twoDecimals.format(calcPrice()) + ".\nThe truck gets " + fuelEfficiency + " mpg and ";
         if(wPackageStatus == true){
             if(lPackageStatus == true) {
                 if(sPackageStatus == true){
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                            + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                            + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t-Sports Package";
                     return description;
                 } else{
                     description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                            + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                            " (" + color + ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                            + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                             "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-4WD Package\n\t\t";
                     return description;
                 }
 
             }else if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " " + model +
-                        " (" + color + ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                        " (" + color + ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                         "\n\tPACKAGES:\n\t\t-Sports Package\n\t\t-4WD Package";
                 return description;
             } else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                         "\n\tPACKAGES:\n\t\t-4WD Package";
                 return description;
             }
         } else if(lPackageStatus == true){
             if(sPackageStatus == true){
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package\n\t\t-Sports Package";
                 return description;
             }else{
                 description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                        " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                        + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                         "\n\tPACKAGES:\n\t\t-Luxury Package";
                 return description;
             }
         } else if(sPackageStatus == true){
             description += "has both a 4WD and luxury package.\n\t" + year + " "+ model +
-                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                    + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                    " ("+color+ ")\n\t\tPRICE:\t\t\t\t" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                    + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                     "\n\tPACKAGES:\n\t\t-Sports Package";
             return description;
         } else{
             description += "has no packages.\n\t" + year + " "+ model +
                     " ("+color+ ")\n\t\tPRICE:\t\t\t\t" +
-                    "" + calcPrice() + "" + "\n\t\tMiles:\t\t\t\t" + mileage
-                    + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + "mpg" +
+                    "" + twoDecimals.format(calcPrice()) + "" + "\n\t\tMILES:\t\t\t\t" + mileage
+                    + "\n\t\tFUEL EFFICIENCY:\t" + fuelEfficiency + " mpg" +
                     "\n\tPACKAGES:\n\t\t-None";
             return description;
         }
@@ -134,7 +137,6 @@ public class Chevy {
             fuelEfficiency -= (fuelEfficiency * fuelDeduction);
         }
         finalPrice += (finalPrice *taxRate);
-        double scale = Math.pow(10,2);
         return finalPrice;
     }
 
