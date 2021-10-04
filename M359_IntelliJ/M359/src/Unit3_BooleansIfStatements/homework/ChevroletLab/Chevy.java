@@ -50,7 +50,8 @@ public class Chevy {
     }
 
     //checks if model color and mileage status are equal to each other
-    public boolean equals(Chevy other){
+    public boolean equals(Chevy other)
+    {
 
         if (this.model.equals(other.model) && this.color.equals(other.color)){
             return (this.mileage < 200 && other.mileage <200 || this.mileage >=200 && other.mileage >=200);
