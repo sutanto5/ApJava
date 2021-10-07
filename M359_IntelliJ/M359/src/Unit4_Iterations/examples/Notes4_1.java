@@ -35,6 +35,7 @@ public class Notes4_1 {
         System.out.println("Total amount of all numbers: " + scoreAmount);
         System.out.println((double) score/scoreAmount + " is your average score \n");
 
+
     }
 
 }
