@@ -16,8 +16,7 @@ public class PigLatinTester {
         System.out.println("In English:");
         System.out.println("\t" + phrase);
         System.out.println("In Pig Latin: ");
-        System.out.println(PigLatin.translateWordToPigLatin("black"));
-        //System.out.println("\t" + PigLatin.toPigLatin(phrase));
+        System.out.println("\t" + PigLatin.toPigLatin(phrase));
         System.out.println();
     }
 }

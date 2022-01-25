@@ -1,0 +1,263 @@
+package TicketMasterLab;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+public class TicketMaster {
+    private ArrayList<Show> Shows;
+
+
+    public TicketMaster() throws FileNotFoundException {
+        this.Shows = readShows();
+    }
+
+    public ArrayList getShows() {
+        return Shows;
+    }
+
+    public void setShows(ArrayList shows) {
+        Shows = shows;
+    }
+
+    public ArrayList<Show> readShows() throws FileNotFoundException {
+        File showFile = new File("showData.txt");
+        //change this later to make one scanner
+        Scanner read = new Scanner(showFile);
+        ArrayList<Show> showList = new ArrayList();
+
+        while (read.hasNextLine()) {
+            String date = read.next();
+            double price = read.nextDouble();
+            int quantity = read.nextInt();
+            String temp = read.nextLine();
+            int ind = temp.indexOf(",");
+            String performer = temp.substring(0, ind);
+            String city = temp.substring(ind + 2);
+
+            Show newShow = new Show(date, price, quantity, performer, city);
+
+            showList.add(newShow);
+        }
+
+        return showList;
+    }
+
+    public String toString() {
+        String output = "";
+
+        output += "Date";
+        output += "\t\tPrice";
+        output += "\t\tQty";
+        output += "\t\t Performer";
+        output += "\t\tCity\n";
+
+        output += "--------------------------------------------------------\n";
+        for (Show x : Shows) {
+            output += x;
+            output += "\n";
+        }
+        return output;
+    }
+
+    /**
+     * sorts by city
+     * @param choice
+     * @return list of shows with cities according to choice
+     */
+    public ArrayList<Show> searchByCity(String choice) {
+        ArrayList<Show> showsInCity = new ArrayList<>();
+
+        for (Show x : Shows) {
+            if (x.getCity().equals(choice)) {
+                showsInCity.add(x);
+            }
+        }
+        Shows = showsInCity;
+        return showsInCity;
+    }
+
+    /**
+     * searches by price
+     * @param price
+     * @return
+     */
+    public ArrayList<Show> searchByPrice(double price) {
+        ArrayList<Show> showsByPrice = new ArrayList<>();
+
+        for (Show x : Shows) {
+            if (x.getPrice() <= price) {
+                showsByPrice.add(x);
+            }
+        }
+
+        return showsByPrice;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Show> sortByHighPrice() {
+        ArrayList<Show> dupe = Shows;
+        ArrayList<Show> showsByPrice = new ArrayList<>();
+
+        while (dupe.size() > 0) {
+
+            int ind = 0;
+            for (int i = 0; i < dupe.size(); i++) {
+                if (dupe.get(ind).getPrice() < dupe.get(i).getPrice()) {
+                    ind = i;
+                }
+            }
+
+            showsByPrice.add(dupe.remove(ind));
+
+        }
+        Shows = showsByPrice;
+        return showsByPrice;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public void sortByLowPrice() {
+        ArrayList<Show> dupe = Shows;
+        ArrayList<Show> showsByPrice = new ArrayList<>();
+
+        while (dupe.size() > 0) {
+
+            int ind = 0;
+            for (int i = 0; i < dupe.size(); i++) {
+                if (dupe.get(ind).getPrice() > dupe.get(i).getPrice()) {
+                    ind = i;
+                }
+            }
+
+            showsByPrice.add(dupe.remove(ind));
+
+        }
+
+        Shows = showsByPrice;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Show> sortAToZ() {
+        ArrayList<Show> sortByAlphabet = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < Shows.size(); i++) {
+            names.add(Shows.get(i).getPerformer());
+        }
+        //sorts the string a to z
+        Collections.sort(names);
+
+        //While shows aren't completely sorted
+        while (names.size() > 0) {
+
+            //Check every show for performer name
+            for (int i = 0; i < Shows.size(); i++) {
+                //if the first index of name equals the performer
+                if (names.get(0).equals(Shows.get(i).getPerformer())) {
+                    sortByAlphabet.add(Shows.get(i));
+                }
+            }
+            //remove the sorted name from the list of names
+            names.remove(0);
+        }
+        //return sorted array
+        Shows = sortByAlphabet;
+        return sortByAlphabet;
+
+    }
+
+    public ArrayList<Show> sortZtoA(){
+        ArrayList<Show> aToZ = sortAToZ();
+        ArrayList<Show> empty = new ArrayList<>();
+        for(int i = aToZ.size()-1; i>=0; i--){
+            empty.add(aToZ.get(i));
+        }
+        Shows = empty;
+        return empty;
+    }
+
+    /**
+     *
+     * @throws InterruptedException
+     */
+    public void kioskIntro(Scanner scanner) throws InterruptedException {
+
+
+
+        //ascii art
+
+        //choice list
+        System.out.println("1. Search by City");
+        System.out.println("2. Sort by Performer");
+        System.out.println("3. Sort by Price");
+        System.out.println("4. Sort A-Z");
+        System.out.println("5. Sort Z-A");
+        System.out.println("6. Sort by Ticket Prices Low");
+        System.out.println("7. Sort by Ticket Prices High");
+        System.out.println("8. Type 8 to quit");
+
+        //Shows
+        System.out.println();
+
+        boolean tryAgain = true;
+        while (tryAgain) {
+
+            try {
+                int choice = scanner.nextInt();
+                if (choice == 1) {
+                    System.out.println("Choose a city: ");
+                    String city = scanner.next();
+                    System.out.println(searchByCity(city));
+                    tryAgain = false;
+                }
+                else if(choice == 2){
+                    tryAgain = false;
+                }
+                else if(choice == 3){
+                    tryAgain =false;
+                }
+                else if(choice == 4){
+                    sortAToZ();
+                    tryAgain = false;
+                }
+                else if(choice == 5){
+                    sortZtoA();
+                    tryAgain = false;
+                }
+                else if(choice == 6){
+                    sortByLowPrice();
+                    tryAgain = false;
+                }
+                else if(choice == 7){
+                    sortByHighPrice();
+                    tryAgain = false;
+                }
+                else if(choice == 8){
+                    tryAgain = false;
+                    System.exit(20);
+
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please type a number 1-8");
+                scanner.nextLine();
+
+
+            }
+        }
+
+    }
+}
