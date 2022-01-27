@@ -128,7 +128,7 @@ public class TicketMaster {
      *
      * @return
      */
-    public void sortByLowPrice() {
+    public ArrayList<Show> sortByLowPrice() {
         ArrayList<Show> dupe = Shows;
         ArrayList<Show> showsByPrice = new ArrayList<>();
 
@@ -145,49 +145,61 @@ public class TicketMaster {
 
         }
 
-        Shows = showsByPrice;
+        return showsByPrice;
     }
 
     /**
      *
      * @return
      */
-    public ArrayList<Show> sortAToZ() {
+    public ArrayList<Show>  sortAToZ() {
 
         for(int i = 0; i < Shows.size()-1; i++){
 
             int minInd = i;
 
             for(int j = i+1; j<Shows.size(); j++){
-                if(Shows.get(j).getPerformer().compareTo(Shows.get(j).getPerformer()) < Shows.get(minInd)){
+                if(Shows.get(j).getPerformer().compareTo(Shows.get(j).getPerformer()) < 0){
                     minInd = j;
                 }
             }
 
-            Integer temp = Shows.get(i);
+            Show temp = Shows.get(i);
             Shows.set(i, Shows.get(minInd));
             Shows.set(minInd, temp);
+            System.out.println(Shows);
 
-            System.out.println(list);
         }
+        return Shows;
 
     }
 
     public ArrayList<Show> sortZtoA(){
-        ArrayList<Show> aToZ = sortAToZ();
-        ArrayList<Show> empty = new ArrayList<>();
-        for(int i = aToZ.size()-1; i>=0; i--){
-            empty.add(aToZ.get(i));
+        for(int i = 0; i < Shows.size()-1; i++){
+
+            int minInd = i;
+
+            for(int j = i+1; j<Shows.size(); j++){
+                if(Shows.get(j).getPerformer().compareTo(Shows.get(j).getPerformer()) > 0){
+                    minInd = j;
+                }
+            }
+
+            Show temp = Shows.get(i);
+            Shows.set(i, Shows.get(minInd));
+            Shows.set(minInd, temp);
+
+
         }
-        Shows = empty;
-        return empty;
+
+        return Shows;
     }
 
     /**
      *
      * @throws InterruptedException
      */
-    public void kioskIntro(Scanner scanner) throws InterruptedException {
+    public ArrayList<Show> kioskIntro(Scanner scanner) throws InterruptedException {
 
 
 
@@ -206,41 +218,42 @@ public class TicketMaster {
         //Shows
         System.out.println();
 
-        boolean tryAgain = true;
-        while (tryAgain) {
+        while (true) {
 
             try {
                 int choice = scanner.nextInt();
                 if (choice == 1) {
                     System.out.println("Choose a city: ");
                     String city = scanner.next();
-                    System.out.println(searchByCity(city));
-                    tryAgain = false;
+                    return(searchByCity(city));
+
                 }
                 else if(choice == 2){
-                    tryAgain = false;
+                    return null;
+
                 }
                 else if(choice == 3){
-                    tryAgain =false;
+                    return null;
+
                 }
                 else if(choice == 4){
-                    sortAToZ();
-                    tryAgain = false;
+                    return sortAToZ();
+
                 }
                 else if(choice == 5){
-                    sortZtoA();
-                    tryAgain = false;
+                    return sortZtoA();
+
                 }
                 else if(choice == 6){
-                    sortByLowPrice();
-                    tryAgain = false;
+                    return sortByLowPrice();
+
                 }
                 else if(choice == 7){
-                    sortByHighPrice();
-                    tryAgain = false;
+                    return sortByHighPrice();
+
                 }
                 else if(choice == 8){
-                    tryAgain = false;
+
                     System.exit(20);
 
                 }

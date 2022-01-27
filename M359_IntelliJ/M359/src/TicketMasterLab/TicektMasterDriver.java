@@ -16,7 +16,7 @@ public class TicektMasterDriver {
 
         while(true) {
             TicketMaster ticket = new TicketMaster();
-            ticket.kioskIntro(myScan);
+            ticket.setShows(ticket.kioskIntro(myScan));
             System.out.println(ticket);
         }
 
