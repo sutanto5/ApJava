@@ -79,7 +79,7 @@ public class TicketMaster {
                 showsInCity.add(x);
             }
         }
-        Shows = showsInCity;
+
         return showsInCity;
     }
 
@@ -153,30 +153,23 @@ public class TicketMaster {
      * @return
      */
     public ArrayList<Show> sortAToZ() {
-        ArrayList<Show> sortByAlphabet = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
-        for (int i = 0; i < Shows.size(); i++) {
-            names.add(Shows.get(i).getPerformer());
-        }
-        //sorts the string a to z
-        Collections.sort(names);
 
-        //While shows aren't completely sorted
-        while (names.size() > 0) {
+        for(int i = 0; i < Shows.size()-1; i++){
 
-            //Check every show for performer name
-            for (int i = 0; i < Shows.size(); i++) {
-                //if the first index of name equals the performer
-                if (names.get(0).equals(Shows.get(i).getPerformer())) {
-                    sortByAlphabet.add(Shows.get(i));
+            int minInd = i;
+
+            for(int j = i+1; j<Shows.size(); j++){
+                if(Shows.get(j).getPerformer().compareTo(Shows.get(j).getPerformer()) < Shows.get(minInd)){
+                    minInd = j;
                 }
             }
-            //remove the sorted name from the list of names
-            names.remove(0);
+
+            Integer temp = Shows.get(i);
+            Shows.set(i, Shows.get(minInd));
+            Shows.set(minInd, temp);
+
+            System.out.println(list);
         }
-        //return sorted array
-        Shows = sortByAlphabet;
-        return sortByAlphabet;
 
     }
 
@@ -257,6 +250,9 @@ public class TicketMaster {
 
 
             }
+
+
+
         }
 
     }
