@@ -128,21 +128,20 @@ public class TicketMaster {
      *
      * @return
      */
-    public ArrayList<Show> sortByLowPrice() {
-        ArrayList<Show> dupe = Shows;
-        ArrayList<Show> showsByPrice = new ArrayList<>();
+    public ArrayList<Show> sortByLowPrice(ArrayList<Show> list) {
+        ArrayList<Integer>
 
-        while (dupe.size() > 0) {
-
-            int ind = 0;
-            for (int i = 0; i < dupe.size(); i++) {
-                if (dupe.get(ind).getPrice() > dupe.get(i).getPrice()) {
-                    ind = i;
-                }
+        for(int i = 1; i < list.size(); i++){
+            Integer valueToInsert = list.get(i);
+            int pos = i;
+            while(pos > 0 && list.get(pos-1) > valueToInsert){
+                list.set(pos, list.get(pos-1));
+                pos--;
             }
 
-            showsByPrice.add(dupe.remove(ind));
-
+            //means we found the correct position(pos) for valueToInsert
+            list.set(pos, valueToInsert);
+            System.out.println(list);
         }
 
         return showsByPrice;
