@@ -27,23 +27,24 @@ public class WorkoutPlan {
      * fills the 2d array with randomized workouts
      */
     public void fillWorkout(){
-        int workoutNum = 1;
+        nextWorkoutNum++;
+
         //for each index of workout
         for(int row = 0; row < workouts.length; row++){
             for(int col = 0; col < workouts[0].length; col++){
                 //random workout between 1 and 3
                 int choice = (int)((Math.random() * 3) + 1);
                 if(choice == 1){
-                    workouts[row][col] = generateCardioWorkout(workoutNum);
+                    workouts[row][col] = generateCardioWorkout(nextWorkoutNum);
                 }
                 if(choice == 2){
-                    workouts[row][col] =generateStrength(workoutNum);
+                    workouts[row][col] =generateStrength(nextWorkoutNum);
                 }
                 if(choice == 3){
-                    workouts[row][col] = generateWellness(workoutNum);
+                    workouts[row][col] = generateWellness(nextWorkoutNum);
                 }
 
-                workoutNum++;
+                nextWorkoutNum++;
 
             }
         }
