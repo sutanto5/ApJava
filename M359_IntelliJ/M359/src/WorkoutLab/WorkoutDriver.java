@@ -18,32 +18,31 @@ public class WorkoutDriver {
         System.out.println();
         int num = 0;
 
-        System.out.print("Amount of weeks for WorkoutPlan: ");
-        num = scan.nextInt();
+        try{
 
-        System.out.println("Please print an integer");
+            System.out.print("Amount of weeks for WorkoutPlan: ");
+            num = scan.nextInt();
 
 
-        scan.nextLine();
-        System.out.println();
-
-        WorkoutPlan workout = new WorkoutPlan(num);
-        System.out.println("Great let's Look at your " + num + " week workout plan");
-        System.out.println(workout);
+        }
+        catch(InputMismatchException e){
+            System.out.println("Please put in an integer");
+            num = scan.nextInt();
+            scan.nextLine();
+        }
 
         while(true) {
+
+
+
+            System.out.println();
+            WorkoutPlan workout = new WorkoutPlan(num);
+
+            System.out.println("Great let's Look at your " + num + " week workout plan");
+            System.out.println(workout);
             System.out.println("Would you like to simulate the week? Type Start");
             String ans = "";
             ans = scan.nextLine();
-
-            while(!ans.equalsIgnoreCase("Start")){
-                System.out.println(motivationalMessage());
-                System.out.println("\t\tYou've got this type start to simulate the next week");
-                ans = scan.nextLine();
-            }
-
-
-
 
             if (ans.equalsIgnoreCase("Start")) {
 
@@ -82,6 +81,9 @@ public class WorkoutDriver {
         return quotes.get(rand);
     }
 
+    public static void chooseMusic(){
+
+    }
     /**
      This method plays Jeopardy music
      */
