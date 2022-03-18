@@ -12,34 +12,42 @@ import java.util.Scanner;
 public class WorkoutDriver {
 
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
+
         Scanner scan = new Scanner(System.in);
         playMusic();
         intro();
+
         System.out.println();
+
         int num = 0;
+        boolean notNum = true;
 
-        try{
+        while(notNum) {
+            try {
 
-            System.out.print("Amount of weeks for WorkoutPlan: ");
-            num = scan.nextInt();
+                System.out.println("Amount of weeks for WorkoutPlan: ");
+                num = scan.nextInt();
+                scan.nextLine();    // dummy read
+                if(num < 0){
+                    throw InputMismatchException;
+                }
+                notNum = false;
 
 
+            } catch (InputMismatchException e) {
+                System.out.println("Please put in an integer");
+                scan.nextLine();    // dummy read from the nextInt()
+            }
         }
-        catch(InputMismatchException e){
-            System.out.println("Please put in an integer");
-            num = scan.nextInt();
-            scan.nextLine();
-        }
+
+        System.out.println();
+        WorkoutPlan workout = new WorkoutPlan(num);
+
+        System.out.println("Great let's Look at your " + num + " week workout plan");
+        System.out.println(workout);
 
         while(true) {
 
-
-
-            System.out.println();
-            WorkoutPlan workout = new WorkoutPlan(num);
-
-            System.out.println("Great let's Look at your " + num + " week workout plan");
-            System.out.println(workout);
             System.out.println("Would you like to simulate the week? Type Start");
             String ans = "";
             ans = scan.nextLine();
@@ -50,6 +58,8 @@ public class WorkoutDriver {
                 workout.workoutNextWeek();
                 workout.printProgress();
 
+            } else{
+                System.out.println(motivationalMessage());
             }
 
         }

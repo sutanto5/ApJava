@@ -148,9 +148,12 @@ public class WorkoutPlan {
     public void endWorkout(){
         //if the current week equals the amount of rows in workouts
         if(curWeek == workouts.length-1){
+            //calculates the last workout
+            workoutNextWeek();
+            System.out.println();
             System.out.println("Congratulations you finished the workout plan");
             printProgress();
-            System.out.println("Thank you for your committment");
+            System.out.println("Thank you for your commitment");
             System.exit(20);
         }
     }
