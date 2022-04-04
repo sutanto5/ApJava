@@ -28,9 +28,7 @@ public class WorkoutDriver {
                 System.out.println("Amount of weeks for WorkoutPlan: ");
                 num = scan.nextInt();
                 scan.nextLine();    // dummy read
-                if(num < 0){
-                    throw InputMismatchException;
-                }
+
                 notNum = false;
 
 
